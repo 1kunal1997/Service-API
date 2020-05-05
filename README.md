@@ -70,7 +70,7 @@ An item is eligible for the shipping program if:
 * The item is from a pre-approved category
 * The item at least a certain price
 
-By default, the minimum price has been set to 100 USD, and a list of pre-approved categories (*ItemCategories.JSON*) and enrolled sellers (*EnrolledSellers.JSON*) have been created to search through. You can find these files in the *service/conditions/* directory.
+By default, the minimum price has been set to 100 USD, and a list of pre-approved categories and enrolled sellers have been created to search through. You can find these files in the *service/conditions/* directory.
 
 ## API Documentation
 
@@ -78,6 +78,28 @@ By default, the minimum price has been set to 100 USD, and a list of pre-approve
  
  Here is a flow chart that shows how the client and server communicate:
  
+ 
+ <img src="eBay_Flow_Chart.jpg" alt="flowchart" width="600"/>
+ 
+ The client sends an HTTP POST request as a JSON application to the URI mentioned, which contains the path extension to the REST endpoint in the *controller* class (found in the *controller/* directory). The method is called, and it tries to consume the request sent as an *Item* (The Item class is defined in the *model/* directory).
+ 
+ The *CheckService* class in the *service/* directory contains 3 static methods:
+ 
+ Type | Name | Description
+:---: | :---: | ---
+boolean | incorrectInputs(Item item) | Checks whether the item's fields are all non-null.
+boolean | checkEligibility(Item item) | Checks if the item is eligible for the program.
+List<Condition> | getConditions() | Returns the conditions for eligibility as a list.
+ 
+ The item is first passed into the *incorrentInputs* function to both check whether the client's request was converted successfully, and whether the client provided all the fields necessary. If not, the controller sends an **HTTP:400 (BAD REQUEST)** response back to the client. Otherwise, *checkEligibility* is called.
+ 
+ *Condition* is an interface found in the *service/* directory. It only has one function declaration: `boolean check(Item item)`. Every condition that the item must pass is defined as its own class (stored in the *service/conditions/* directory) and implements this interface. So far, we have 3 classes, each having their own definition of the *check* method:
+ 
+ Class | *check* description
+:---: | ---
+CategoryEligibility | Checks whether the item's category is in a list of approved categories (*ItemCategories.JSON*).
+PriceEligibility | Checks if the item's price is at least a certain amount.
+SellerEligibility | Checks whether the seller is in a list of enrolled sellers (*EnrolledSellers.JSON*).
  
 
 ## Usage & Testing
