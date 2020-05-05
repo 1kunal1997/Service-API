@@ -57,11 +57,7 @@ mvnw spring-boot:run
 
 which will establish a connection to the server at port 8080. Since the application path is "/rest" and the REST endpoint's path is "/item", we can reach the endpoint using this URI: http://localhost:8080/rest/item.
 
-## Usage & Testing
-
-Once the service API is up and running, you can use it to see how it works.
-
-### Description
+## Description
 
 Items are characterized by 4 fields:
 * The *title* of the item
@@ -69,25 +65,59 @@ Items are characterized by 4 fields:
 * The item's *category*
 * The *price* of the item in USD
 
-A item is eligible for the shipping program if:
+An item is eligible for the shipping program if:
 * The seller of the item is enrolled in the shipping program
 * The item is from a pre-approved category
 * The item at least a certain price
 
 By default, the minimum price has been set to 100 USD, and a list of pre-approved categories (*ItemCategories.JSON*) and enrolled sellers (*EnrolledSellers.JSON*) have been created to search through. You can find these files in the *service/conditions/* directory.
 
-You can manually test the service by creating your own test items and sending them using [Postman](https://www.postman.com/), or run the tests provided in the *test* directory.
+## API Documentation
+
+ NOTE: If you are not interested in how the service works, and merely want to use the service, you can skip this section.
+ 
+ Here is a flow chart that shows how the client and server communicate:
+ 
+ 
+
+## Usage & Testing
+
+Once the service API is up and running, you can use it to see how it works.
 
 ### Manual Tests
 
-We can send an item in Postman using the POST HTTP request to the correct URI:
+We can send an item in Postman using the POST HTTP request to the correct URI. Make sure the request is sent as a JSON application:
+
+![postman1](Postman_screenshot_1.png)
+
+and look at the response:
+
+![postman2](Postman_screenshot_2.png)
+
+Make sure to provide all of the correct fields. You can input the fields in any order, and provide more inputs than necessary.
+
+![postman3](Postman_screenshot_3.png)
+
+![postman4](Postman_screenshot_4.png)
+
+Example of a test Item that is missing a field:
+
+![postman5](Postman_screenshot_5.png)
+
+![postman6](Postman_screenshot_6.png)
 
 ### Test Programs
 
-Explain what these tests test and why
+Unit tests and integrated tests are provided in the *test* directory. You can run all tests together:
 
 ```
-Give an example
+mvnw clean test
+```
+
+or a set of them by class name:
+
+```
+mvnw clean test -Dtest=ClassName
 ```
 
 ## Built With
