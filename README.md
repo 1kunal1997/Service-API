@@ -49,7 +49,7 @@ To get the service up and running, either execute the JAR file:
 java -jar target/CodingChallenge-0.0.1-SNAPSHOT.jar
 ```
 
-or run it using ```spring-boot```
+or run it using ```spring-boot```:
 
 ```
 mvnw spring-boot:run
@@ -178,8 +178,9 @@ This does **1** check test to check if the Spring application context started co
 * [Maven](https://maven.apache.org/) - Dependency Management, build tool
 * [Jersey](https://eclipse-ee4j.github.io/jersey/) - starter, tests
 
-### Maven Dependencies
+## Maven Dependencies
 
+![](Dependencies_eBay.PNG)
 
 ## Authors
 
