@@ -1,5 +1,5 @@
 # eBay-Project
-Service API for eBay's new shipping program. This project creates a RESTful web application to determine whether clients' items are eligible for the program.
+Service API for eBay's new shipping program. This project creates a RESTful service to determine whether clients' items are eligible for the program.
 
 ## Getting Started
 
@@ -116,23 +116,23 @@ Once the service API is up and running, you can use it to see how it works.
 
 We can send an item in Postman using the POST HTTP request to the correct URI. Make sure the request is sent as a JSON application:
 
-![postman1](Postman_screenshot_1.png)
+![postman1](screenshots/Postman_screenshot_1.png)
 
 and look at the response:
 
-![postman2](Postman_screenshot_2.png)
+![postman2](screenshots/Postman_screenshot_2.png)
 
 Make sure to provide all of the correct fields. You can input the fields in any order, and provide more inputs than necessary.
 
-![postman3](Postman_screenshot_3.png)
+![postman3](screenshots/Postman_screenshot_3.png)
 
-![postman4](Postman_screenshot_4.png)
+![postman4](screenshots/Postman_screenshot_4.png)
 
 Example of a test Item that is missing a field:
 
-![postman5](Postman_screenshot_5.png)
+![postman5](screenshots/Postman_screenshot_5.png)
 
-![postman6](Postman_screenshot_6.png)
+![postman6](screenshots/Postman_screenshot_6.png)
 
 ### Test Programs
 
